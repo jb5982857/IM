@@ -1,0 +1,252 @@
+syntax = "proto3";
+// 生成的包名
+option java_package = "com.im2.common.protobuf";
+//生成的java名
+option java_outer_classname = "MessageTemplate";
+
+/**
+*   由于netty反序列化格式的限制，所以所有消息请求分为客户端和服务端，不能再用request和response区分
+*/
+
+//客户端的请求和响应
+message Client {
+    string userSign = 14;
+    // 消息id
+    int64 id = 1;
+    // 消息类型
+    ActionType type = 2;
+    //token
+    string token = 3;
+    oneof Action {
+        //登录
+        Account account = 4;
+        //查看自己的信息
+        SelfInfoRequest selfInfo = 5;
+        //我的所有好友
+        MyFriendsRequest friends = 6;
+        //我的讨论组
+        MyGroupsRequest group = 7;
+        //我的聊天记录
+        MyRecordRequest record = 8;
+        //查看用户信息
+        FriendInfoRequest frindInfo = 9;
+        SendMsg sendMsg = 10;
+    }
+}
+
+//服务端的请求和响应
+message Server {
+    string userSign = 14;
+    // 消息id
+    int64 id = 1;
+    // 消息类型
+    ActionType type = 2;
+    // 请求状态
+    Status status = 3;
+    oneof Action {
+        //我的所有好友
+        MyFriendsResponse friends = 4;
+        //我的讨论组
+        MyGroupsResponse grounp = 5;
+        //聊天记录
+        MyRecordResponse record = 6;
+        //用户信息
+        UserInfo info = 7;
+        //用户登录返回
+        Account account = 8;
+    }
+}
+//-------------------------以下是请求--------------------------------
+//我的好友
+message MyFriendsRequest {
+    //用户id
+    string username = 1;
+    //用户token
+    string token = 2;
+}
+//我的讨论组
+message MyGroupsRequest {
+    string username = 1;
+    string token = 2;
+}
+//我的聊天记录
+message MyRecordRequest {
+    string username = 1;
+    string token = 2;
+}
+//查看用户信息
+message FriendInfoRequest {
+    //好友id
+    string friendId = 1;
+    //自己的id
+    string username = 2;
+    //token
+    string token = 3;
+}
+//个人信息
+message SelfInfoRequest {
+    string username = 1;
+    string token = 2;
+}
+
+//发送消息
+message SendMsg {
+    //发送者id
+    string sender = 2;
+    //接受者的类型，是用户还是群组
+    ReceiverType type = 3;
+    //接受者id
+    string receiver = 4;
+    //内容
+    string content = 5;
+    //发送时间
+    int32 time = 6;
+    enum ReceiverType {
+        FRIEND = 0;
+        GROUP = 1;
+    }
+}
+//--------------------------以下是相应--------------------------------
+//我的讨论组
+message MyGroupsResponse {
+    string username = 1;
+    repeated Group group = 2;
+}
+
+//单个讨论组
+message Group {
+    //讨论组的唯一标示，群号
+    int64 id = 1;
+    //讨论组公告
+    string notice = 2;
+    //该讨论组的成员
+    repeated GroupMember member = 3;
+
+    message GroupMember {
+        Friend friend = 1;
+        enum MemberType {
+            //一般群众
+            NORMAL = 0;
+            //群主
+            CREATER = 1;
+            //管理员
+            MANAGER = 2;
+        }
+        MemberType type = 2;
+    }
+}
+
+//我的所有好友
+message MyFriendsResponse {
+    string username = 1;
+    //key:该好友所在分组的名称,value：该分组中的好友
+    map<string, FriendList> friends = 2;
+}
+
+message FriendList {
+    repeated Friend friend = 1;
+}
+
+//我的聊天总记录，用于显示聊天总界面，显示最近聊天的人和讨论组，以及标记已读和未读状态
+message MyRecordResponse {
+    string username = 1;
+    //key：消息类别 0 好友   1 讨论组 预留     value：聊天记录
+    map<fixed32, RecordList> records = 2;
+}
+
+message RecordList {
+    repeated Record record = 1;
+}
+
+//显示在消息界面的单条消息
+message Record {
+    //讨论组或者好友昵称
+    string name = 1;
+    //最后一条消息，用户显示
+    string lastMsg = 2;
+    //icon地址
+    string iconUrl = 3;
+    //最后一条消息的时间
+    int32 time = 4;
+    //是否已读
+    bool read = 5;
+}
+
+//个人信息，用户打开用户或好友详细信息界面使用
+message UserInfo {
+    string username = 1;
+    string name = 2;
+    string sex = 3;
+    string age = 4;
+    string phone = 5;
+    string address = 6;
+    string introduction = 7;
+}
+
+// 好友，用户显示最基本的状态，详细信息走Info
+message Friend {
+    //昵称
+    string name = 1;
+    //id,用于标记这个用户
+    string id = 2;
+    //头像链接
+    string iconUrl = 3;
+    //当前状态
+    FriendType state = 4;
+    //个性签名
+    string signature = 5;
+    //用户等级 0 - 无穷大，基本单位 星星 ，5星=1月亮 5月亮=1太阳
+    int32 level = 6;
+    enum FriendType {
+        //离线
+        OFFLINE = 0;
+        //在线
+        ONLINE = 1;
+        //离开
+        LEFT = 2;
+        //繁忙
+        BUSY = 3;
+    }
+}
+
+//帐号
+message Account {
+    string username = 1;
+    string password = 2;
+    string phone = 3;
+    int64 token = 4;
+}
+
+//------------------------------以下是状态值----------------------------
+enum MessageSign //枚举消息类型
+{
+    REQUEST = 0;
+    RESPONSE = 1;
+    NOTICE = 2;
+}
+enum ActionType {
+    LOGIN = 0; // 登录
+    REGISTER = 1; // 注册
+    LOGOUT = 2; // 登出
+    RECONN = 3; // 重连
+    PERSON_MESSAGE = 4; // 发送个人消息
+    GROUP_MESSAGE = 5; // 发送讨论组消息
+    CREATE_GROUP = 6; // 创建讨论组
+    DISBAND_GROUP = 7; // 解散讨论组
+    ADD_MEMBER = 8; // 讨论组添加成员
+    REMOVE_MEMBER = 9; // 讨论组移除成员
+    ADD_FRIEND = 10; // 添加好友
+    REMOVE_FRIEND = 11; // 删除好友
+    ALL_FRIENDS = 12; // 查看已添加好友
+    UPDATE_SELF_INFO = 13; // 修改个人信息
+    LOOK_SELF_INFO = 14; // 查看个人信息
+    LOOK_FRIEND_INFO = 15; // 查看好友信息
+    LOOK_GROUP_INFO = 16; // 查看自己所在讨论组信息
+    HEARTBEAT = 17; // 心跳
+}
+enum Status {
+    SUCCESS = 0; //请求成功
+    REQUEST_ERROR = 1; //请求错误
+    SERVER_BUSY = 2; // 服务器繁忙
+    SERVER_ERROR = 3; // 服务器错误
+}

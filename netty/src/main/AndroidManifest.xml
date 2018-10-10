@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nanshan.netty">
+
+    <application>
+        <service
+            android:name=".WebSocketServer"
+            android:process=":netty">
+            <intent-filter>
+                <action android:name="com.nanshan.netty.action" />
+                <category android:name="com.nanshan.netty.category" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

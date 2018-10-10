@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="nav_name_size">30sp</dimen>
+    <dimen name="nav_sign_size">10sp</dimen>
+    <dimen name="button_radius">5dp</dimen>
+    <dimen name="button_stroke">1dp</dimen>
+    <dimen name="register_notice_size">50sp</dimen>
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_head"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@android:color/white"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp">
+
+    <TextView
+        android:id="@+id/nav_tv_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:hint="编辑个性签名"
+        android:textSize="@dimen/nav_sign_size" />
+
+    <ImageView
+        android:id="@+id/nav_iv_level"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_above="@id/nav_tv_sign"
+        android:scaleType="fitXY"
+        android:src="@drawable/star" />
+
+    <ImageView
+        android:id="@+id/nav_iv_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_above="@id/nav_iv_level"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/user_center_default_avatar" />
+
+    <TextView
+        android:id="@+id/nav_tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/nav_iv_image"
+        android:layout_toRightOf="@id/nav_iv_image"
+        android:text="Mars Payne"
+        android:textSize="@dimen/nav_name_size" />
+</RelativeLayout>

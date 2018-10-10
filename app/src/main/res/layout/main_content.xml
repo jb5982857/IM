@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".module.chat.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/ll_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@color/navigation_bg"
+        android:orientation="horizontal"
+        android:paddingBottom="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_chat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:tag="0"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_chat"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/chat_drawable" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/navigation_message"
+                android:textColor="@drawable/navigation_text_drawable"
+                android:textSize="@dimen/navigation_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_contact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:tag="1"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_contact"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/contact_drawable" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/navigation_constact"
+                android:textColor="@drawable/navigation_text_drawable"
+                android:textSize="@dimen/navigation_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_news"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:tag="2"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_news"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/news_drawable" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/navigation_news"
+                android:textColor="@drawable/navigation_text_drawable"
+                android:textSize="@dimen/navigation_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_space"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:tag="3"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_space"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/space_drawable" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/navigation_space"
+                android:textColor="@drawable/navigation_text_drawable"
+                android:textSize="@dimen/navigation_text" />
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

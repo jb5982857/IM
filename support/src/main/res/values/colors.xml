@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="button_normal">#ff00BFFF</color>
+    <color name="button_pressed">#ff1E90FF</color>
+    <color name="button_invaild">#ff696969</color>
+    <color name="color_toast_bg">#B3000000</color>
+    <color name="navigation_bg">#ffF5F5F5</color>
+    <color name="navigation_text_state_color">#ff008B00</color>
+    <color name="navigation_text_normal_color">#ff363636</color>
+</resources>

@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nanshan.sms">
+
+    <application>
+        <meta-data
+            android:name="Mob-AppKey"
+            android:value="\2789337855483" />
+
+        <meta-data
+            android:name="Mob-AppSecret"
+            android:value="\543646971e919944d168c05814853875" />
+    </application>
+</manifest>

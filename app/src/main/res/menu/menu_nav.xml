@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".module.chat.MainActivity">
+    <item android:title="组1">
+        <menu>
+            <item
+                android:id="@+id/favorite"
+                android:icon="@mipmap/ic_launcher"
+                android:title="收藏" />
+            <item
+                android:id="@+id/wallet"
+                android:icon="@mipmap/ic_launcher"
+                android:title="钱包" />
+        </menu>
+    </item>
+
+    <item android:title="组2">
+        <menu>
+            <item
+                android:id="@+id/photo"
+                android:icon="@mipmap/ic_launcher"
+                android:title="相册" />
+            <item
+                android:id="@+id/file"
+                android:icon="@mipmap/ic_launcher"
+                android:title="文件" />
+        </menu>
+    </item>
+
+</menu>
